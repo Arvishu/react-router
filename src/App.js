@@ -1,27 +1,70 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { Route, BrowserRouter, Link,NavLink} from 'react-router-dom';
 import './App.css';
 
-class App extends Component {
+// Création d'un composant
+
+const Wilder =()=>{
+  return (
+    
+    <iframe width="1512" height="480" src="https://www.youtube.com/embed/p1wqvyBH5Ls?ecver=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  )}
+
+ class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+      
+        <BrowserRouter>
+              <div>
+                <ul>
+                  <li>
+                  <NavLink to="/"exact activeStyle={
+                    {color:'red',
+                    fontWeight:'bold',
+                    fontSize:50,}
+                                     
+                  }>Home</NavLink>
+                  </li>
+
+                  <li>
+                  <NavLink to="/notre-histoire"exact activeStyle={
+                    {color:'red',
+                    fontWeight:'bold',
+                    fontSize:50,}
+                  }>History</NavLink>
+                  </li>
+                   
+
+                  <li>
+                  <NavLink to="/Wilder"exact activeStyle={
+                     {color:'red',
+                     fontWeight:'bold',
+                     fontSize:50,}
+                  }>Wilder</NavLink>
+                  </li>
+                  
+                </ul>
+
+                  <Route path="/"exact strict render={
+                      ()=> {
+                          return (<h1>Bienvenue sur l'accueil</h1>);
+                      }
+                      
+                    }/>
+
+                <Route path="/notre-histoire"exact strict render={
+                  ()=>{
+                    return (<h1>Notre histoire</h1>);
+                  }
+                }/>
+                <Route path="/Wilder"exact strict component={Wilder}/>         
+                  
+               
+
+              </div>
+            </BrowserRouter>
+     
+    )
   }
 }
 
